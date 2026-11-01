@@ -1,1 +1,0 @@
-Implement the user request in the provided repository without adding any special methodology or external skills. You may use additional reasoning or a further self-correction attempt, bounded by the same dollar reservation as the evidence-gated candidate. Report changed files, test commands and observed results. A self-report is not evidence of correctness.

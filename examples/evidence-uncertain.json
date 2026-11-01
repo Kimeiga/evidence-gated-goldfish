@@ -1,9 +1,0 @@
-{
-  "tests_available": false,
-  "tests_passed": false,
-  "contracts_checked": false,
-  "contract_conflicts": [],
-  "neighbor_regressions": [],
-  "unresolved_critical_risks": [],
-  "high_impact_change": false
-}

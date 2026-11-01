@@ -1,2 +1,0 @@
-{"run_id":"sample-base-1","task_id":"demo-task","arm":"baseline","verified_success":false,"cost_usd":0.03,"wall_seconds":48,"human_minutes":1}
-{"run_id":"sample-eg-1","task_id":"demo-task","arm":"evidence-gated","verified_success":true,"cost_usd":0.05,"wall_seconds":90,"human_minutes":1}
