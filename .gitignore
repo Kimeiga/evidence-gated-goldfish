@@ -1,0 +1,16 @@
+# Local experiment outputs and budgets, never check in sessions or credentials.
+.runs/
+.worktrees/
+.env
+.env.*
+*.key
+*.pem
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.venv/
+dist/
+# Blind evaluation keys must never be visible to a coding agent.
+**/answer-key/
+**/hidden/
+private/
