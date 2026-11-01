@@ -14,6 +14,15 @@ on:
           - "qwen3:4b-instruct"
           - "qwen3:1.7b"
           - "qwen2.5-coder:1.5b"
+      variant:
+        description: "Prompt-only architecture reviews or two scoped R1/R2 checks"
+        type: choice
+        required: true
+        default: "scoped-contracts"
+        options:
+          - "scoped-contracts"
+          - "architecture-review"
+          - "both"
       scenario:
         description: "Architecture fixture to test"
         type: choice
@@ -47,6 +56,7 @@ jobs:
       OLLAMA_MAX_LOADED_MODELS: "1"
       EGG_MODEL: ${{ inputs.model || 'qwen3:4b-instruct' }}
       EGG_SCENARIO: ${{ inputs.scenario || 'both' }}
+      EGG_VARIANT: ${{ inputs.variant || 'scoped-contracts' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -77,19 +87,27 @@ jobs:
           set -euo pipefail
           ollama pull "$EGG_MODEL"
           ollama list
-      - name: Run local model on repository's test fixtures
+      - name: Run ungraded direct and contract-guided reviews
+        if: ${{ env.EGG_VARIANT == 'architecture-review' || env.EGG_VARIANT == 'both' }}
         run: |
           set -euo pipefail
           python -m egg.local_llm --model "$EGG_MODEL" --scenario "$EGG_SCENARIO" --output results/local-cpu
+      - name: Run four public scoped checks (R1 and R2)
+        if: ${{ env.EGG_VARIANT == 'scoped-contracts' || env.EGG_VARIANT == 'both' }}
+        run: |
+          set -euo pipefail
+          python -m egg.scoped_checks --model "$EGG_MODEL" --output results/local-scoped
       - name: Upload small reproducibility artifacts (no weights)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: local-cpu-architecture-review
-          path: results/local-cpu/
+          name: local-cpu-experiment-results
+          path: |
+            results/local-cpu/
+            results/local-scoped/
           if-no-files-found: warn
           retention-days: 3
       - name: Report Ollama log when failing
         if: failure()
         run: tail -n 100 "$RUNNER_TEMP/ollama.log" || true
-# Run this workflow after restoring the full repository tree.
+# Prompt-only comparison runs are independent from the native five-framework evaluation.

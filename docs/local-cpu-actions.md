@@ -49,3 +49,9 @@ References:
 - https://docs.ollama.com/api/generate
 - https://github.com/ollama/ollama/blob/main/docs/faq.mdx
 - https://ollama.com/library/qwen3
+
+## Scoped contract-check follow-up
+
+The first live 4B model run completed four review outputs (6,924 input tokens, 644 output tokens, 279.88 seconds of inference). Direct reviewing identified some genuine planted defects but also produced unsupported concerns on the clean control; the all-requirements contract-guided prompt answered `NONE` for both designs, including the flawed one. No overall quality score is claimed.
+
+The workflow therefore offers a **`scoped-contracts`** variant by default. It checks only two publicly known behaviors, R1 (durable acknowledgment) and R2 (stable delivery ID), on both flawed and control documents. Each model call sees a single requirement and the corresponding design section. It records the model's verdict against four explicit, manually known reference outcomes. This is a bounded calibration of prompt granularity, *not* the hidden 14-defect comparison. The optional `architecture-review` and `both` variants retain the initial reviews.
