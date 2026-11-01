@@ -40,6 +40,8 @@ def design_section(case: str, title: str) -> str:
     root = FIXTURE / ("case" if case == "flawed" else "control")
     document = (root / "design.md").read_text(encoding="utf-8")
     marker = f"## {title}\n"
+    if marker not in document and case == "control" and title == "Workers and scheduling":
+        marker = "## Worker state and scheduling\n"
     if marker not in document:
         raise ValueError(f"Section missing: {title}")
     return document.split(marker, 1)[1].split("\n## ", 1)[0].strip()

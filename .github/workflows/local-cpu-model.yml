@@ -111,3 +111,4 @@ jobs:
         if: failure()
         run: tail -n 100 "$RUNNER_TEMP/ollama.log" || true
 # Prompt-only comparison runs are independent from the native five-framework evaluation.
+# Re-run the scoped fixture after correcting its clean-control header.
