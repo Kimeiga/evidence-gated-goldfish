@@ -1,0 +1,20 @@
+# Preregistration template. Freeze task ids, hidden tests and model revision before running.
+[spend]
+currency = "USD"
+total = 30
+framework_screen = 5
+primary_comparison = 20
+contingency = 5
+
+[comparison]
+arms = ["baseline", "equal-budget", "evidence-gated"]
+repetitions_per_task = 2
+target_task_count = 12
+randomization_seed = 20261101
+# These are aspirational counts, subject to actual costs and phase limits.
+# Spend caps take precedence over count completion.
+
+[success_gate]
+max_observed_critical_regressions = 0
+minimum_fractional_cost_per_pass_reduction = 0.30
+max_observed_human_time_increase_fraction = 0.0

@@ -92,3 +92,4 @@ jobs:
       - name: Report Ollama log when failing
         if: failure()
         run: tail -n 100 "$RUNNER_TEMP/ollama.log" || true
+# Run this workflow after restoring the full repository tree.

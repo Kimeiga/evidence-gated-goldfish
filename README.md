@@ -71,3 +71,9 @@ This repository is public. Only sanitized example fixtures are included. Keep pr
 - The result cannot be reproduced from logged models, revisions, tasks, prompts, and measured costs.
 
 Related ideas, such as model cascades, adversarial review, test-gated agents, and reasoning-budget allocation, already exist. The specific routing policy is a **hypothesis**, not a claimed invention.
+
+## Free local-model smoke benchmark in GitHub Actions
+
+This public repository can use a **standard 4-core, 16 GB Linux GitHub Actions runner** for local CPU inference without paid model API calls. See [the local CPU instructions](docs/local-cpu-actions.md) and the [workflow](.github/workflows/local-cpu-model.yml).
+
+Run the **Local CPU model experiment** workflow from the Actions tab. It downloads Qwen3 via Ollama, disables Ollama cloud features, reviews the existing flawed and clean architecture fixtures using two read-only prompts, and publishes ungraded outputs and real token/time measurements. This is a **feasibility test**, not yet a five-framework agent or code-quality benchmark. Subsequent inference runs are manual, not scheduled.

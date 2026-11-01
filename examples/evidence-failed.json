@@ -1,0 +1,9 @@
+{
+  "tests_available": true,
+  "tests_passed": false,
+  "contracts_checked": true,
+  "contract_conflicts": ["API must return status 404 for an unknown user"],
+  "neighbor_regressions": [],
+  "unresolved_critical_risks": [],
+  "high_impact_change": false
+}
