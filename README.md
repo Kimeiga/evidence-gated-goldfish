@@ -77,3 +77,7 @@ Related ideas, such as model cascades, adversarial review, test-gated agents, an
 This public repository can use a **standard 4-core, 16 GB Linux GitHub Actions runner** for local CPU inference without paid model API calls. See [the local CPU instructions](docs/local-cpu-actions.md) and the [workflow](.github/workflows/local-cpu-model.yml).
 
 Run the **Local CPU model experiment** workflow from the Actions tab. It downloads Qwen3 via Ollama, disables Ollama cloud features, reviews the existing flawed and clean architecture fixtures using two read-only prompts, and publishes ungraded outputs and real token/time measurements. This is a **feasibility test**, not yet a five-framework agent or code-quality benchmark. Subsequent inference runs are manual, not scheduled.
+
+### Measured free-CPU pilot
+
+The [November 1 pilot results](docs/local-cpu-pilot-results.md) confirm $0 model API charges on a public standard runner but **do not show an accuracy improvement**. The 4B model matched 3 of 4 narrow, public contract checks and missed the critical durable-acknowledgment defect.
